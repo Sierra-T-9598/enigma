@@ -1,3 +1,4 @@
+require './spec_helper.rb'
 require './lib/key_maker.rb'
 
 RSpec.describe KeyMaker do
