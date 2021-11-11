@@ -19,4 +19,11 @@ RSpec.describe KeyMaker do
     expect(key_maker_random.key).to be_instance_of(String)
     expect(key_maker_random.key.length).to be(5)
   end
+
+  it 'can generate four new keys' do
+    key_maker = KeyMaker.new("02715")
+    expect(key_maker.generate_four_keys("02715")).to eq({"A" => "02",
+      "B" => "27", "C" => "71", "D" => "15"})
+  end
+
 end
