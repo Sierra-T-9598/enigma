@@ -12,12 +12,12 @@ RSpec.describe OffsetMaker do
   it 'generates the date of today if no date is given' do
     offset_maker_no_date = OffsetMaker.new
     expect(offset_maker_no_date).to be_instance_of(OffsetMaker)
+    expect(offset_maker_no_date.date).to_not eq(nil)
   end
-
 
   it 'generates the offset digits from the date of transmission' do
     offset_maker = OffsetMaker.new("040895")
-    expect(offset_maker.offset("040895")).to eq("1025")
+    expect(offset_maker.offset).to eq("1025")
   end
 
   it 'generates offsets A-D using the offset digits' do
