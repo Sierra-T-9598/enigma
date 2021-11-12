@@ -1,5 +1,5 @@
 class KeyMaker
-  attr_accessor :key
+  attr_accessor :key, :keys
   def initialize(key = nil)
     @key = generate(key)
     @keys = {}

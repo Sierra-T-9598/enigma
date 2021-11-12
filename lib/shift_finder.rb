@@ -1,4 +1,5 @@
 class ShiftFinder
+  attr_reader :keys, :offsets
   def initialize(keys, offsets)
     @keys = keys
     @offsets = offsets

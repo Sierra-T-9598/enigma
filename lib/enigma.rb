@@ -4,5 +4,8 @@ class Enigma < ShiftFinder
     super(keys, offsets)
   end
 
+  def encrypt(message, key, date)
+  end
 
-end
+  def decrypt(ciphertext, ket, date)
+  end

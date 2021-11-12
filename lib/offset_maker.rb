@@ -1,7 +1,8 @@
 class OffsetMaker
-  attr_reader :date
+  attr_reader :date, :offsets
   def initialize(date)
     @date = date
+    @offsets = {}
   end
 
   def offset(date)
@@ -12,7 +13,7 @@ class OffsetMaker
 
   def set_offsets
     offset(date)
-    @offsets = Hash.new
+    # @offsets = Hash.new
     @offsets["A"] = @last_four[0]
     @offsets["B"] = @last_four[1]
     @offsets["C"] = @last_four[2]
