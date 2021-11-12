@@ -1,8 +1,17 @@
+require 'date'
 class OffsetMaker
   attr_reader :date, :offsets
-  def initialize(date)
-    @date = date
+  def initialize(date = nil)
+    @date = generate(date)
     @offsets = {}
+  end
+
+  def generate(date)
+    if date == nil
+      @date = Date.today.strftime("%m%d%y")
+    else
+      date
+    end
   end
 
   def offset(date)
