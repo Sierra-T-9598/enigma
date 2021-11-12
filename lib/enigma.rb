@@ -1,11 +1,21 @@
 require './shift_finder.rb'
-class Enigma < ShiftFinder
-  def initialize(keys, offsets)
-    super(keys, offsets)
+require 'date'
+class Enigma
+  def initialize
+    @indexed_character_set = ("a".."z").to_a << " "
+    # @date = Date.today.strftime("%m%d%y")
+    # @key_maker = KeyMaker.new(key = nil)
+    # super(keys, offsets)
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = nil, date = nil)
+    @key_maker = KeyMaker.new(key)
+    @offset_maker = OffsetMaker.new(date)
+    @shift_finder = ShiftFinder.new(@key_maker.keys, @offset_maker.offsets)
+    require "pry"; binding.pry
+    # require "pry"; binding.pry
   end
 
-  def decrypt(ciphertext, ket, date)
+  def decrypt(ciphertext, key, date)
   end
+end
