@@ -22,9 +22,25 @@ RSpec.describe Enigma do
   end
 
   it 'can decrypt a message with a key and date' do
-    expected = {:encryption => "hello world",
+    expected = {:decryption => "hello world",
                 :key => "02715",
                 :date => "040895"}
     expect(@enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
+  end
+
+  it 'can encrypt using the date from today' do
+    encrypted = @enigma.encrypt("hello world", "02715")
+    expect(@enigma.encrypt("hello world", "02715")).to be_a(Hash)
+    expect(@enigma.encrypt("hello world", "02715").count).to eq(3)
+  end
+
+  it 'can decrypt using the date from today' do
+    encrypted = @enigma.encrypt("hello world", "02715")
+    expect(@enigma.decrypt(encrypted[:encryption], "02715")).to be_a(Hash)
+  end
+
+  it 'can generate random keys and use the date from today' do
+    expect(@enigma.encrypt("hello world")).to be_a(Hash)
+    expect(@enigma.encrypt("hello world").count).to eq(3)
   end
 end
