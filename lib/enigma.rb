@@ -34,7 +34,7 @@ class Enigma
       encrypted
   end
 
-  def decrypt(ciphertext, key, date)
+  def decrypt(ciphertext, key = nil, date = nil)
     @key_maker = KeyMaker.new(key)
     @offset_maker = OffsetMaker.new(date)
     @shift_finder = ShiftFinder.new(@key_maker.keys, @offset_maker.offsets)
@@ -54,7 +54,7 @@ class Enigma
         encrypted_text << new_letter.to_s
       end
       encrypted_text
-      encrypted[:encryption] = encrypted_text
+      encrypted[:decryption] = encrypted_text
       encrypted[:key] = key
       encrypted[:date] = date
       encrypted
