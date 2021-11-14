@@ -52,6 +52,7 @@ class Enigma
         new_letter = @alphabet_array.reverse[new_index]
         decrypted_text << new_letter.to_s
       end
+
       decrypted_text
       decrypted[:decryption] = decrypted_text
       decrypted[:key] = key
