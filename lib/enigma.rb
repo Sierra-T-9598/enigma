@@ -19,6 +19,8 @@ class Enigma
         if @alphabet_array.include?(letter)
           shift_letter_index = shift_loop.next
           new_index = @alphabet_array.index(letter) + shift_letter_index
+          # new_index -= 108 if new_index > 108
+          # new_index -= 81 if new_index > 81
           new_index -= 54 if new_index > 54
           new_index -= 27 if new_index > 26
           new_letter = @alphabet_array[new_index]
@@ -44,15 +46,17 @@ class Enigma
     shifts_array = @shift_finder.shifts.values.map {|value| value.to_i}
 
     decrypted_text = ""
-    ciphertext.downcase!
+    ciphertext.to_s
     shift_loop = shifts_array.cycle(ciphertext.length)
       ciphertext.chars.each_with_index do |letter, index|
         if @alphabet_array.include?(letter)
           shift_letter_index = shift_loop.next
-          new_index = @alphabet_array.reverse.index(letter) + shift_letter_index
-          new_index -= 54 if new_index > 54
-          new_index -= 27 if new_index > 26
-          new_letter = @alphabet_array.reverse[new_index]
+          new_index = @alphabet_array.index(letter) - shift_letter_index
+          # new_index -= 108 if new_index > 108
+          # new_index -= 81 if new_index > 81
+          new_index += 54 if new_index < -27
+          new_index += 27 if new_index < 0
+          new_letter = @alphabet_array[new_index]
           decrypted_text << new_letter.to_s
         elsif
           decrypted_text << letter
