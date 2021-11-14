@@ -1,4 +1,3 @@
-require './shift_finder.rb'
 require 'date'
 class Enigma
   def initialize
@@ -27,22 +26,22 @@ class Enigma
         new_letter = @alphabet_array[new_index]
         encrypted_text << new_letter.to_s
       end
-      encrypted_text
-      encrypted[:encryption] = encrypted_text
-      encrypted[:key] = key
-      encrypted[:date] = date
-      encrypted
+    encrypted_text
+    encrypted[:encryption] = encrypted_text
+    encrypted[:key] = @key_maker.key
+    encrypted[:date] = @offset_maker.date
+    encrypted
   end
 
   def decrypt(ciphertext, key = nil, date = nil)
     @key_maker = KeyMaker.new(key)
     @offset_maker = OffsetMaker.new(date)
     @shift_finder = ShiftFinder.new(@key_maker.keys, @offset_maker.offsets)
-    encrypted = {}
+    decrypted = {}
 
     shifts_array = @shift_finder.shifts.values.map {|value| value.to_i}
 
-    encrypted_text = ""
+    decrypted_text = ""
     ciphertext.downcase!
     shift_loop = shifts_array.cycle(ciphertext.length)
       ciphertext.chars.each_with_index do |letter, index|
@@ -51,13 +50,13 @@ class Enigma
         new_index -= 54 if new_index > 54
         new_index -= 27 if new_index > 26
         new_letter = @alphabet_array.reverse[new_index]
-        encrypted_text << new_letter.to_s
+        decrypted_text << new_letter.to_s
       end
-      encrypted_text
-      encrypted[:decryption] = encrypted_text
-      encrypted[:key] = key
-      encrypted[:date] = date
-      encrypted
+      decrypted_text
+      decrypted[:decryption] = decrypted_text
+      decrypted[:key] = key
+      decrypted[:date] = @offset_maker.date
+      decrypted
       # require "pry"; binding.pry
   end
 end
