@@ -29,7 +29,7 @@ RSpec.describe Enigma do
   end
 
   it 'can encrypt using the date from today' do
-    encrypted = @enigma.encrypt("hello world", "02715")
+    # encrypted = @enigma.encrypt("hello world", "02715")
     expect(@enigma.encrypt("hello world", "02715")).to be_a(Hash)
     expect(@enigma.encrypt("hello world", "02715").count).to eq(3)
   end
