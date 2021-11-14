@@ -22,7 +22,7 @@ RSpec.describe KeyMaker do
 
   it 'can generate four new keys' do
     key_maker = KeyMaker.new("02715")
-    expect(key_maker.generate_four_keys("02715")).to eq({"A" => "02",
+    expect(key_maker.generate_four_keys).to eq({"A" => "02",
       "B" => "27", "C" => "71", "D" => "15"})
   end
 
