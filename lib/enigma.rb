@@ -2,9 +2,6 @@ require 'date'
 class Enigma
   def initialize
     @alphabet_array = ("a".."z").to_a << " "
-    # @date = Date.today.strftime("%m%d%y")
-    # @key_maker = KeyMaker.new(key = nil)
-    # super(keys, offsets)
   end
 
   def encrypt(message, key = nil, date = nil)
@@ -19,12 +16,17 @@ class Enigma
     message.downcase!
     shift_loop = shifts_array.cycle(message.length)
       message.chars.each_with_index do |letter, index|
-        shift_letter_index = shift_loop.next
-        new_index = @alphabet_array.index(letter) + shift_letter_index
-        new_index -= 54 if new_index > 54
-        new_index -= 27 if new_index > 26
-        new_letter = @alphabet_array[new_index]
-        encrypted_text << new_letter.to_s
+        if @alphabet_array.include?(letter)
+          shift_letter_index = shift_loop.next
+          new_index = @alphabet_array.index(letter) + shift_letter_index
+          new_index -= 54 if new_index > 54
+          new_index -= 27 if new_index > 26
+          new_letter = @alphabet_array[new_index]
+          encrypted_text << new_letter.to_s
+        elsif
+          encrypted_text << letter.to_s
+        end
+
       end
     encrypted_text
     encrypted[:encryption] = encrypted_text
@@ -45,12 +47,16 @@ class Enigma
     ciphertext.downcase!
     shift_loop = shifts_array.cycle(ciphertext.length)
       ciphertext.chars.each_with_index do |letter, index|
-        shift_letter_index = shift_loop.next
-        new_index = @alphabet_array.reverse.index(letter) + shift_letter_index
-        new_index -= 54 if new_index > 54
-        new_index -= 27 if new_index > 26
-        new_letter = @alphabet_array.reverse[new_index]
-        decrypted_text << new_letter.to_s
+        if @alphabet_array.include?(letter)
+          shift_letter_index = shift_loop.next
+          new_index = @alphabet_array.reverse.index(letter) + shift_letter_index
+          new_index -= 54 if new_index > 54
+          new_index -= 27 if new_index > 26
+          new_letter = @alphabet_array.reverse[new_index]
+          decrypted_text << new_letter.to_s
+        elsif
+          decrypted_text << letter
+        end
       end
 
       decrypted_text

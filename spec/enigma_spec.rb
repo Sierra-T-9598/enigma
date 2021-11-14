@@ -4,7 +4,7 @@ require './lib/key_maker.rb'
 require './lib/offset_maker.rb'
 require './lib/shift_finder.rb'
 require './lib/enigma.rb'
-###Still need to address other character edge cases in message
+
 RSpec.describe Enigma do
   before(:each) do
     @enigma = Enigma.new
@@ -42,5 +42,19 @@ RSpec.describe Enigma do
   it 'can generate random keys and use the date from today' do
     expect(@enigma.encrypt("hello world")).to be_a(Hash)
     expect(@enigma.encrypt("hello world").count).to eq(3)
+  end
+
+  it 'can encrypt a message with other characters that stay the same' do
+    expected = {:encryption => "keder ohulw!",
+                :key => "02715",
+                :date => "040895"}
+    expect(@enigma.encrypt("hello world!", "02715", "040895")).to eq(expected)
+  end
+
+  it 'can decrypt a message with other characters that stay the same' do
+    expected = {:decryption => "hello world!",
+                :key => "02715",
+                :date => "040895"}
+    expect(@enigma.decrypt("keder ohulw!", "02715", "040895")).to eq(expected)
   end
 end

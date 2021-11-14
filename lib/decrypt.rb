@@ -7,7 +7,7 @@ reader = File.open(ARGV[0], "r")
 encrypted_text = reader.read
 reader.close
 
-decrypted_text = enigma.decrypt(encrypted_text.chomp, ARGV[2], ARGV[3])
+decrypted_text = enigma.decrypt(encrypted_text.chomp, ARGV[2], ARGV[3] = nil)
 writer = File.open(ARGV[1], "w")
 writer.write(decrypted_text[:decryption])
 writer.close
