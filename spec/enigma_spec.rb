@@ -15,16 +15,16 @@ RSpec.describe Enigma do
   end
 
   it 'can encrypt a message with a key and date' do
-    expected = {:encryption => "keder ohulw",
-                :key => "02715",
-                :date => "040895"}
+    expected = {encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"}
     expect(@enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
   end
 
   it 'can decrypt a message with a key and date' do
-    expected = {:decryption => "hello world",
-                :key => "02715",
-                :date => "040895"}
+    expected = {decryption: "hello world",
+                key: "02715",
+                date: "040895"}
     expect(@enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
   end
 
@@ -39,24 +39,41 @@ RSpec.describe Enigma do
   end
 
   it 'can generate random keys and use the date from today' do
-    # require "pry"; binding.pry
-    # allow(@enigma).to_receive(:self.offset_maker.date).and_return("111521")
     expect(@enigma.encrypt("hello world")).to be_a(Hash)
     expect(@enigma.encrypt("hello world").count).to eq(3)
+  end
 
+
+### Edge Case Testing
+
+  it 'only translates messages in lowercase' do
+    expected = {encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"}
+    expect(@enigma.encrypt("Hello worlD", "02715", "040895")).to eq(expected)
   end
 
   it 'can encrypt a message with other characters that stay the same' do
-    expected = {:encryption => "keder ohulw!",
-                :key => "02715",
-                :date => "040895"}
+    expected = {encryption: "keder ohulw!",
+                key: "02715",
+                date: "040895"}
     expect(@enigma.encrypt("hello world!", "02715", "040895")).to eq(expected)
   end
 
   it 'can decrypt a message with other characters that stay the same' do
-    expected = {:decryption => "hello world!",
-                :key => "02715",
-                :date => "040895"}
+    expected = {decryption: "hello world!",
+                key: "02715",
+                date: "040895"}
     expect(@enigma.decrypt("keder ohulw!", "02715", "040895")).to eq(expected)
+  end
+
+  ### Shiftable Module Unit Testing
+
+  it 'can shift the message forward to encrypt' do
+    expect(@enigma.shift_message("hello world", [3, 27, 73, 20])).to eq("keder ohulw")
+  end
+
+  it 'can shift the ciphertext backward to decrypt' do
+    expect(@enigma.shift_ciphertext("keder ohulw", [3, 27, 73, 20])).to eq("hello world")
   end
 end

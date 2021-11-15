@@ -4,10 +4,6 @@ require_relative './shiftable.rb'
 class Enigma
   include Shiftable
 
-  # def initialize
-  #  # @alphabet_array = ("a".."z").to_a << " "
-  # end
-
   def encrypt(message, key = nil, date = nil)
     @key_maker = KeyMaker.new(key)
     @offset_maker = OffsetMaker.new(date)

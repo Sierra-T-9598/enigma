@@ -6,17 +6,16 @@ require_relative './shift_finder.rb'
 enigma = Enigma.new
 
 reader = File.open(ARGV[0], "r")
-# Dir.chdir(File.dirname('lib'))
 incoming_text = reader.read
 reader.close
 
 encrypted_text = enigma.encrypt(incoming_text.chomp)
+
 writer = File.open(ARGV[1], "w")
-# require "pry"; binding.pry
 writer.write(encrypted_text[:encryption])
 writer.close
 
-puts "Created #{ARGV[1]} with the key #{encrypted_text[:key]} and date #{encrypted_text[:date]}"
+puts "Created '#{ARGV[1]}' with the key #{encrypted_text[:key]} and date #{encrypted_text[:date]}"
 
 ###COMMAND LINE:
 # ruby encrypt.rb message.txt encrypted.txt
