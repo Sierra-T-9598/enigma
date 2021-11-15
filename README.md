@@ -31,48 +31,50 @@ Based on the Enigma - Evaluation Rubric, I have completed all the requirements
 to meet expectations.
 
   ### Functionality
-  ✔️ #encrypt and #decrypt are successfully implemented in the Enigma class.
-  ✔️ Running encryption and decryption from the CLI is successfully implemented.
+  + ✔️ #encrypt and #decrypt are successfully implemented in the Enigma class.
+  + ✔️ Running encryption and decryption from the CLI is successfully implemented.
 
   ### Object Oriented Programming
-  ✔️ I broke the project down into logical components, starting small to make
+  + ✔️ I broke the project down into logical components, starting small to make
   the ultimate Enigma class functionality
-    - KeyMaker
-    - OffsetMaker
-    - ShiftFinder
-    - Enigma
-  ✔️ All classes are reasonably sized and have a pre-determined responsibilities
+    + KeyMaker
+    + OffsetMaker
+    + ShiftFinder
+    + Enigma
+  + ✔️ All classes are reasonably sized and have a pre-determined responsibilities
   surrounding a given functionality.
-    - KeyMaker takes in a key and/or generates one before generating a hash with
+    + KeyMaker takes in a key and/or generates one before generating a hash with
     4 keys corresponding to A,B,C,D.
-    - OffsetMaker takes in a date and/or generates today's date before calculating
+    + OffsetMaker takes in a date and/or generates today's date before calculating
     offsets that correspond to an A,B,C, or D key.
-    - ShiftFinder takes in the KeyMaker hash and OffsetMaker hash and adds their
+    + ShiftFinder takes in the KeyMaker hash and OffsetMaker hash and adds their
     values together to create a new hash with the final shift amounts for each.
-    - Enigma is akin to a puzzle. It needs a KeyMaker, an OffsetMaker, and a ShiftFinder,
+    + Enigma is akin to a puzzle. It needs a KeyMaker, an OffsetMaker, and a ShiftFinder,
     in order to first encrypt a message with the given shifts and then decrypt the message
     using the same shifts, the key, and the date used for encryption.
 
   ### Ruby Conventions and Mechanics
-  ✔️ Code is properly indented, spaced, and lines are not over 76.
-  ✔️ All class, method, variable, and file names follow convention
-  ✔️ Most of the enumerables and data structures chosen are the most efficient
-  ✔️ Implemented multiple hashes in a logical manner
-    - KeyMaker, OffsetMaker, and ShiftFinder classes all result in hashes that
+  + ✔️ Code is properly indented, spaced, and lines are not over 76.
+  + ✔️ All class, method, variable, and file names follow convention
+  + ✔️ Most of the enumerables and data structures chosen are the most efficient
+  + ✔️ Implemented multiple hashes in a logical manner
+    + KeyMaker, OffsetMaker, and ShiftFinder classes all result in hashes that
     work together to keep track of and generate the A,B,C,D shifts.
 
   ### Test Driven Development
-  ✔️ Every class has a spec file and every method within a class is completely
+  + ✔️ Every class has a spec file and every method within a class is completely
   tested to verify the expected behavior.
-  ✔️ At the integration level, the KeyMaker, OffsetMaker, and ShiftFinder are all
+  + ✔️ At the integration level, the KeyMaker, OffsetMaker, and ShiftFinder are all
   put to the test in the functioning of the Enigma class, and subsequently the
   functioning of the command line interface.
-  ✔️ Edge cases like, characters outside of the alphabet array, uppercased messages,
+  + ✔️ Edge cases like, characters outside of the alphabet array, uppercased messages,
   and shift amounts of any possible amount (i.e. max of 99 + 9 = 108) are addressed.
-  ✔️ git history shows that I wrote all tests first, prior to working with
+  + ✔️ git history shows that I wrote all tests first, prior to working with
   implementation code.
-  ✔️ Simple cov shoes coverage at 100%
+  + ✔️ Simple cov shoes coverage at 100%
 
   #### Version Control
   Total commits:
-  Uses logical pull request workflow. 
+  Uses logical pull request workflow.
+
+  #### Score I would give myself: 3
