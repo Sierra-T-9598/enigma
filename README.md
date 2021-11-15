@@ -28,30 +28,29 @@ Ruby (v. 2.7.2)
 
 ## SELF ASSESSMENT ✔️
 Based on the Enigma - Evaluation Rubric, I have completed all the requirements
-to meet expectations.
+to 'Meets expectations', and met 'Above Expectations' for Object Oriented Programming.
 
   ### Functionality
   + ✔️ #encrypt and #decrypt are successfully implemented in the Enigma class.
   + ✔️ Running encryption and decryption from the CLI is successfully implemented.
 
   ### Object Oriented Programming
-  + ✔️ I broke the project down into logical components, starting small to make
-  the ultimate Enigma class functionality
+  + ✔️ I broke the project down into logical components, starting small to make the ultimate Enigma class functionality:
     + KeyMaker
     + OffsetMaker
     + ShiftFinder
     + Enigma
-  + ✔️ All classes are reasonably sized and have a pre-determined responsibilities
-  surrounding a given functionality.
+  + ✔️ All classes are reasonably sized and have a pre-determined responsibilities surrounding a given functionality.
     + KeyMaker takes in a key and/or generates one before generating a hash with
     4 keys corresponding to A,B,C,D.
     + OffsetMaker takes in a date and/or generates today's date before calculating
     offsets that correspond to an A,B,C, or D key.
     + ShiftFinder takes in the KeyMaker hash and OffsetMaker hash and adds their
     values together to create a new hash with the final shift amounts for each.
-    + Enigma is akin to a puzzle. It needs a KeyMaker, an OffsetMaker, and a ShiftFinder,
+    + Enigma is akin to a puzzle maker, and since it made the puzzle, it also holds the key to solving it. It needs a KeyMaker, an OffsetMaker, and a ShiftFinder,
     in order to first encrypt a message with the given shifts and then decrypt the message
     using the same shifts, the key, and the date used for encryption.
+  + ✔️ Shiftable module is included in the Enigma class to handle the shifting of the message and ciphertext. It contains two methods, one for the forward shift and one for the backward shift. This functionality is abstracted away from the Enigma class because the behaviors of #encrypt and #decrypt for Enigma are nearly identical and can be called on from an outside module in order to make the complexity of the Enigma more hidden, and portray only the necessary output of encryption/decryption, the encrypted or decrypted hash.
 
   ### Ruby Conventions and Mechanics
   + ✔️ Code is properly indented, spaced, and lines are not over 76.
@@ -74,7 +73,7 @@ to meet expectations.
   + ✔️ Simple cov shoes coverage at 100%
 
   #### Version Control
-  + Total commits:
+  + Total commits: 71
   + Uses logical pull request workflow.
 
-  #### Score I would give myself: 3
+  #### Score I would give myself: Passing
