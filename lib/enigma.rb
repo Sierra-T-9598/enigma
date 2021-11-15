@@ -1,44 +1,47 @@
 require 'date'
-# require './encryptable.rb'
+require_relative './encryptable.rb'
 
 class Enigma
-  # include Encryptable
+  include Encryptable
 
-  def initialize
-    @alphabet_array = ("a".."z").to_a << " "
-  end
+  # def initialize
+  #   # @alphabet_array = ("a".."z").to_a << " "
+  # end
 
   def encrypt(message, key = nil, date = nil)
     @key_maker = KeyMaker.new(key)
     @offset_maker = OffsetMaker.new(date)
     @shift_finder = ShiftFinder.new(@key_maker.keys, @offset_maker.offsets)
     encrypted = {}
-
+    #
     shifts_array = @shift_finder.shifts.values.map {|value| value.to_i}
 
-    encrypted_text = ""
-    message.downcase!
-    shift_loop = shifts_array.cycle(message.length)
-      message.chars.each_with_index do |letter, index|
-        if @alphabet_array.include?(letter)
-          shift_letter_amount = shift_loop.next
-          new_index = @alphabet_array.index(letter) + shift_letter_amount
-          new_index -= 108 if new_index > 108
-          new_index -= 81 if new_index > 81
-          new_index -= 54 if new_index > 54
-          new_index -= 27 if new_index > 26
-          new_letter = @alphabet_array[new_index]
-          encrypted_text << new_letter.to_s
-        elsif
-          encrypted_text << letter.to_s
-        end
-      end
+    # message_encryption = shift_message(message, shifts_array)
+    #
+    # encrypted_text = ""
+    # message.downcase!
+    # shift_loop = shifts_array.cycle(message.length)
+    #   message.chars.each_with_index do |letter, index|
+    #     if @alphabet_array.include?(letter)
+    #       shift_letter_amount = shift_loop.next
+    #       new_index = @alphabet_array.index(letter) + shift_letter_amount
+    #       new_index -= 108 if new_index > 108
+    #       new_index -= 81 if new_index > 81
+    #       new_index -= 54 if new_index > 54
+    #       new_index -= 27 if new_index > 26
+    #       new_letter = @alphabet_array[new_index]
+    #       encrypted_text << new_letter.to_s
+    #     elsif
+    #       encrypted_text << letter.to_s
+    #     end
+    #   end
     #forward_shift(message, key, date)
-    encrypted_text
-    encrypted[:encryption] = encrypted_text
+    # encrypted_text
+    encrypted[:encryption] = shift_message(message, shifts_array)
     encrypted[:key] = @key_maker.key
     encrypted[:date] = @offset_maker.date
     encrypted
+    # require "pry"; binding.pry
   end
 
   def decrypt(ciphertext, key = nil, date = nil)
@@ -46,6 +49,7 @@ class Enigma
     @offset_maker = OffsetMaker.new(date)
     @shift_finder = ShiftFinder.new(@key_maker.keys, @offset_maker.offsets)
     decrypted = {}
+    @alphabet_array = ("a".."z").to_a << " "
 
     shifts_array = @shift_finder.shifts.values.map {|value| value.to_i}
 

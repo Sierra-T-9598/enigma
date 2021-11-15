@@ -74,7 +74,7 @@ to meet expectations.
   + ✔️ Simple cov shoes coverage at 100%
 
   #### Version Control
-  Total commits:
-  Uses logical pull request workflow.
+  + Total commits:
+  + Uses logical pull request workflow.
 
   #### Score I would give myself: 3
