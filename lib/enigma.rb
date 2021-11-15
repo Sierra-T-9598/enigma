@@ -1,5 +1,9 @@
 require 'date'
+# require './encryptable.rb'
+
 class Enigma
+  # include Encryptable
+
   def initialize
     @alphabet_array = ("a".."z").to_a << " "
   end
@@ -28,8 +32,8 @@ class Enigma
         elsif
           encrypted_text << letter.to_s
         end
-
       end
+    #forward_shift(message, key, date)
     encrypted_text
     encrypted[:encryption] = encrypted_text
     encrypted[:key] = @key_maker.key

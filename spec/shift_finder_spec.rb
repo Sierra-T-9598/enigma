@@ -21,7 +21,6 @@ RSpec.describe ShiftFinder do
   end
 
   it 'can sum keys and offsets' do
-    # require "pry"; binding.pry
     expected = {"A" => "3", "B" => "27", "C" => "73", "D" => "20"}
     expect(@shift_finder.sum_of_keys_and_offsets).to eq(expected)
   end

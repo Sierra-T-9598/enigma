@@ -17,7 +17,6 @@ class OffsetMaker
   def offset
     squared = ((@date.to_i)**2).to_s
     @last_four = squared[-4..-1]
-    # require "pry"; binding.pry
   end
 
   def set_offsets
