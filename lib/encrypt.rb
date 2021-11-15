@@ -2,6 +2,7 @@ require_relative './enigma'
 require_relative './key_maker.rb'
 require_relative './offset_maker.rb'
 require_relative './shift_finder.rb'
+
 enigma = Enigma.new
 
 reader = File.open(ARGV[0], "r")

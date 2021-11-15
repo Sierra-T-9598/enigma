@@ -3,11 +3,6 @@ class KeyMaker
   def initialize(key = nil)
     @key = generate(key)
     @keys = generate_four_keys
-    # @a_key = key[0..1]
-    # @b_key = key[1..2]
-    # @c_key = key[2..3]
-    # @d_key = key[3..4]
-    # require "pry"; binding.pry
   end
 
   def generate(key)

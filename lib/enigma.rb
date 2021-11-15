@@ -1,5 +1,9 @@
 require 'date'
+# require './encryptable.rb'
+
 class Enigma
+  # include Encryptable
+
   def initialize
     @alphabet_array = ("a".."z").to_a << " "
   end
@@ -19,8 +23,8 @@ class Enigma
         if @alphabet_array.include?(letter)
           shift_letter_index = shift_loop.next
           new_index = @alphabet_array.index(letter) + shift_letter_index
-          # new_index -= 108 if new_index > 108
-          # new_index -= 81 if new_index > 81
+          new_index -= 108 if new_index > 108
+          new_index -= 81 if new_index > 81
           new_index -= 54 if new_index > 54
           new_index -= 27 if new_index > 26
           new_letter = @alphabet_array[new_index]
@@ -28,8 +32,8 @@ class Enigma
         elsif
           encrypted_text << letter.to_s
         end
-
       end
+    #forward_shift(message, key, date)
     encrypted_text
     encrypted[:encryption] = encrypted_text
     encrypted[:key] = @key_maker.key
@@ -52,8 +56,8 @@ class Enigma
         if @alphabet_array.include?(letter)
           shift_letter_index = shift_loop.next
           new_index = @alphabet_array.index(letter) - shift_letter_index
-          # new_index -= 108 if new_index > 108
-          # new_index -= 81 if new_index > 81
+          new_index += 108 if new_index < -81
+          new_index += 81 if new_index < -54
           new_index += 54 if new_index < -27
           new_index += 27 if new_index < 0
           new_letter = @alphabet_array[new_index]
