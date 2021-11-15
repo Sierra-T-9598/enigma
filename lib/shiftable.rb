@@ -4,7 +4,7 @@ module Shiftable
     encrypted_text = ""
     message.downcase!
     shift_loop = shifts_array.cycle(message.length)
-      message.chars.each_with_index do |letter, index|
+      message.chars.each do |letter|
         if alphabet_array.include?(letter)
           shift_letter_amount = shift_loop.next
           new_index = alphabet_array.index(letter) + shift_letter_amount
@@ -27,7 +27,7 @@ module Shiftable
     decrypted_text = ""
     ciphertext.to_s
     shift_loop = shifts_array.cycle(ciphertext.length)
-      ciphertext.chars.each_with_index do |letter, index|
+      ciphertext.chars.each do |letter|
         if alphabet_array.include?(letter)
           shift_letter_amount = shift_loop.next
           new_index = alphabet_array.index(letter) - shift_letter_amount
@@ -43,5 +43,4 @@ module Shiftable
       end
       decrypted_text
   end
-
 end
