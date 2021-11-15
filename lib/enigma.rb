@@ -21,8 +21,8 @@ class Enigma
     shift_loop = shifts_array.cycle(message.length)
       message.chars.each_with_index do |letter, index|
         if @alphabet_array.include?(letter)
-          shift_letter_index = shift_loop.next
-          new_index = @alphabet_array.index(letter) + shift_letter_index
+          shift_letter_amount = shift_loop.next
+          new_index = @alphabet_array.index(letter) + shift_letter_amount
           new_index -= 108 if new_index > 108
           new_index -= 81 if new_index > 81
           new_index -= 54 if new_index > 54
@@ -54,8 +54,8 @@ class Enigma
     shift_loop = shifts_array.cycle(ciphertext.length)
       ciphertext.chars.each_with_index do |letter, index|
         if @alphabet_array.include?(letter)
-          shift_letter_index = shift_loop.next
-          new_index = @alphabet_array.index(letter) - shift_letter_index
+          shift_letter_amount = shift_loop.next
+          new_index = @alphabet_array.index(letter) - shift_letter_amount
           new_index += 108 if new_index < -81
           new_index += 81 if new_index < -54
           new_index += 54 if new_index < -27
